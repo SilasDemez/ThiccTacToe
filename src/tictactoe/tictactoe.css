@@ -1,0 +1,23 @@
+.button{
+    -fx-focus-color: transparent;
+    -fx-background-insets: -1, 0, 1, 1;
+
+    -fx-font-weight: bold;
+    -fx-font-size: 36;
+    -fx-text-fill: #9a9a9d;
+    -fx-background-color: #2d292d;
+    -fx-border-color: #161515;
+}
+
+.menu-bar{
+    -fx-background-color: #1f1d1d;
+}
+.menu .label {
+    -fx-text-fill: #9a9a9d;
+    -fx-font-weight: bold;
+}
+
+.winning-square {
+    -fx-text-fill: #981a1a;
+
+}

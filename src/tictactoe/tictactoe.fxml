@@ -3,33 +3,48 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<GridPane alignment="center" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="tictactoe.Controller">
-   <columnConstraints>
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-   </rowConstraints>
-   <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0">
-         <top>
-            <MenuBar BorderPane.alignment="CENTER">
-              <menus>
-                <Menu mnemonicParsing="false" text="Actions">
-                  <items>
-                        <MenuItem mnemonicParsing="false" text="Play" />
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.Controller">
+    <top>
+        <MenuBar fx:id="menubar" BorderPane.alignment="CENTER">
+            <menus>
+                <Menu text="Actions">
+                    <items>
+                        <MenuItem onAction="#menuClickHandler" text="Play" />
+                        <MenuItem text="Quit" />
+                    </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
-                  </items>
+                <Menu text="Help">
+                    <items>
+                        <MenuItem text="About" />
+                        <MenuItem text="How to play" />
+                    </items>
                 </Menu>
-              </menus>
-            </MenuBar>
-         </top>
-      </BorderPane>
-   </children>
-</GridPane>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <GridPane fx:id="gameBoard" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="b1" onAction="#buttonClickHandler" prefHeight="100.0" prefWidth="100.0" />
+                <Button fx:id="b2" onAction="#buttonClickHandler" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" />
+                <Button fx:id="b3" onAction="#buttonClickHandler" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" />
+                <Button fx:id="b4" onAction="#buttonClickHandler" prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="1" />
+                <Button fx:id="b5" onAction="#buttonClickHandler" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Button fx:id="b6" onAction="#buttonClickHandler" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <Button fx:id="b7" onAction="#buttonClickHandler" prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="2" />
+                <Button fx:id="b8" onAction="#buttonClickHandler" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Button fx:id="b9" onAction="#buttonClickHandler" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            </children>
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+        </GridPane>
+    </center>
+</BorderPane>
