@@ -8,8 +8,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
 
+import java.util.Arrays;
+
 public class Controller {
+    static class Move
+    {
+        int row, col;
+    };
     private boolean isFirstPlayer = true;
+
+    String board[][];
 
     @FXML
     Button b1;
@@ -40,13 +48,59 @@ public class Controller {
 
         if ("".equals(buttonLabel) && isFirstPlayer) {
             clickedButton.setText("X");
-            isFirstPlayer = false;
-            find3InARow();
-        } else if ("".equals(buttonLabel) && !isFirstPlayer) {
-            clickedButton.setText("O");
             isFirstPlayer = true;
             find3InARow();
+            computerAi();
         }
+    }
+
+    public int computerAi() {
+        MiniMax.Move bestMove;
+        char board[][] = new char[3][3];
+        int e=-1,f=0;
+        Node btn = null;
+        char cache;
+        ObservableList<Node> buttons = gameBoard.getChildren();
+
+        for (int i=0;i<9;i++){
+
+            if (e==2) {
+                e = 0;
+                f++;
+            }else {
+                e++;
+            }
+            //System.out.println("e: " + e + ", f: " + f);
+            btn = buttons.get(i);
+            try {
+                cache = ((Button) btn).getText().charAt(0);
+            }catch (Exception exception1) {
+                cache = ' ';
+            }
+            //System.out.println(cache);
+            board[f][e] = cache;
+        }
+
+        System.out.println(Arrays.deepToString(board));
+
+        char board1[][] = {{ 'X', 'O', ' ' },
+                { ' ', ' ', ' ' },
+                { ' ', ' ', ' ' }};
+
+        bestMove = MiniMax.findBestMove(board);
+        System.out.println(bestMove.col + ", " + bestMove.row);
+
+        if (bestMove.row == 0){
+            btn = buttons.get(bestMove.col);
+        }else if (bestMove.row == 1){
+            btn = buttons.get(bestMove.col + 3);
+        }else if (bestMove.row == 2){
+            btn = buttons.get(bestMove.col + 6);
+        }else return -1;
+
+        ((Button) btn).setText("O");
+        find3InARow();
+        return 0;
     }
 
 
@@ -103,11 +157,6 @@ public class Controller {
     }
 
     private void highlightWinningCombo(Button first, Button second, Button third) {
-        ObservableList<Node> buttons = gameBoard.getChildren();
-
-        buttons.forEach(btn -> {
-            btn.setDisable(true);
-        });
         first.getStyleClass().add("winning-square");
         second.getStyleClass().add("winning-square");
         third.getStyleClass().add("winning-square");
