@@ -11,4 +11,5 @@ The Computer AI only draws or wins
 
 
 ## Installation
-In the out folder the installer is located. Execute it and it shoul work (only for Windows).
+*Item 1 On the right under releases download ThickTacToe.exe and execute it (only for Windows)
+*Item 2 In the out folder the installer is located. Execute it and it should work (only for Windows).
