@@ -1,0 +1,8 @@
+
+*.xml
+*.class
+*.iml
+out/production/TicTacToe/tictactoe/tictactoe.fxml
+out/production/TicTacToe/tictactoe/tictactoe.css
+*.MF
+*.html
