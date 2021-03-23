@@ -16,6 +16,7 @@ public class Controller {
         int row, col;
     };
     private boolean isFirstPlayer = true;
+    private boolean computer = true;
 
     String board[][];
 
@@ -48,13 +49,20 @@ public class Controller {
 
         if ("".equals(buttonLabel) && isFirstPlayer) {
             clickedButton.setText("X");
+            isFirstPlayer = false;
+            find3InARow();
+            if (computer) {
+                computerAi();
+            }
+        }else{
+            clickedButton.setText("O");
             isFirstPlayer = true;
             find3InARow();
-            computerAi();
         }
     }
 
     public int computerAi() {
+        isFirstPlayer = true;
         MiniMax.Move bestMove;
         char board[][] = new char[3][3];
         int e=-1,f=0;
@@ -82,10 +90,6 @@ public class Controller {
         }
 
         System.out.println(Arrays.deepToString(board));
-
-        char board1[][] = {{ 'X', 'O', ' ' },
-                { ' ', ' ', ' ' },
-                { ' ', ' ', ' ' }};
 
         bestMove = MiniMax.findBestMove(board);
         System.out.println(bestMove.col + ", " + bestMove.row);
@@ -167,18 +171,34 @@ public class Controller {
 
         MenuItem clickedMenu = (MenuItem) evt.getTarget();
         String menuLabel = clickedMenu.getText();
+        System.out.println("Got the menulabel: " + menuLabel);
 
-        if ("Play".equals(menuLabel)) {
-            ObservableList<Node> buttons = gameBoard.getChildren();
-
-            buttons.forEach(btn -> {
-                btn.getStyleClass().remove("winning-square");
-                ((Button) btn).setText("");
-            });
-
-            isFirstPlayer = true;
+        switch (menuLabel){
+            case "Play/Restore":
+                isFirstPlayer = true;
+                reset();
+                break;
+            case "Quit":
+                System.exit(1);
+                break;
+            case "Multiplayer":
+                computer = false;
+                reset();
+                break;
+            case "Computer":
+                computer = true;
+                reset();
+                break;
         }
     }
 
+    public void reset(){
+        ObservableList<Node> buttons = gameBoard.getChildren();
+
+        buttons.forEach(btn -> {
+            btn.getStyleClass().remove("winning-square");
+            ((Button) btn).setText("");
+        });
+    }
 
 }

@@ -9,14 +9,14 @@
             <menus>
                 <Menu text="Actions">
                     <items>
-                        <MenuItem onAction="#menuClickHandler" text="Play" />
-                        <MenuItem text="Quit" />
+                        <MenuItem onAction="#menuClickHandler" text="Play/Restore" />
+                        <MenuItem onAction="#menuClickHandler" text="Quit" />
                     </items>
                 </Menu>
-                <Menu text="Help">
+                <Menu text="Mode">
                     <items>
-                        <MenuItem text="About" />
-                        <MenuItem text="How to play" />
+                        <MenuItem onAction="#menuClickHandler" text="Multiplayer" />
+                        <MenuItem onAction="#menuClickHandler" text="Computer" />
                     </items>
                 </Menu>
             </menus>
